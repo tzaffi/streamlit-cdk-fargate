@@ -10,7 +10,7 @@ Ok, so assuming the following pre-req's:
 
 the single command to stand up the demo streamlit app included in this repo would be:
 
-`git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && make deploy-streamlit`
+`git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
 
 ## What if I don't have those pre-reqs
 Keep reading. You'll find links/explanations for how to get each of the pre-requisites
