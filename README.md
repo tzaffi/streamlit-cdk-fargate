@@ -6,7 +6,7 @@ Ok, so assuming the following pre-req's:
 * you have an AWS account
 * have configured the AWS CLI
 * installed AWS CDK on your machine
-* and have the `make` command available
+* and have the `git` and `make` commands available
 
 the single command to stand up the demo streamlit app included in this repo would be:
 
@@ -147,6 +147,6 @@ A slimmed down version of [nicolasmetallo](https://github.com/nicolasmetallo)'s 
 * Get an [AWS account](https://portal.aws.amazon.com/billing/signup?nc2=h_ct&src=default&redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start) if you don't already have access to one
 * Install the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) if you haven't already done so and make sure to configure the client to connect with your AWS account (use the command `aws configure` after installation)
 * Install the [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html) on your machine. NOTE: You'll need to install Node.js as part of the process.
-* Install the `make` command if you don't already have that available. This should probably already be available if you're running Mac OS, or Linux. On windows, you'll have to do a little more work. But come to think of it, on Windows you'll also need to have the git command as well. The last time I was using Windows, I enjoyed the [Chocalatey application](https://chocolatey.org/install) which made installing git and make as simple as running the following commands:
+* Install `git` and `make` if you don't already have these on your machine. This should probably already be available if you're running Mac OS, or Linux. On windows, you'll have to do a little more work. But come to think of it, on Windows you'll also need to have the git command as well. The last time I was using Windows, I enjoyed the [Chocalatey application](https://chocolatey.org/install) which made installing git and make as simple as running the following commands:
   * `choco install git`
   * `choco install make`
