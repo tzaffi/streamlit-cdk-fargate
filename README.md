@@ -1,7 +1,27 @@
 # streamlit-cdk-fargate
-You're one command away from deploying your Streamlit app on AWS Fargate!
+You're one command away from deploying your [Streamlit](https://www.streamlit.io/) app on [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html)!
 
-# MERGE 1
+## What is that one command you're teasing us with?
+Ok, so assuming the following pre-req's:
+* you have an AWS account
+* have configured the AWS CLI
+* installed AWS CDK on your machine
+* and have the `make` command available
+
+the single command to stand up the demo streamlit app included in this repo would be:
+
+`git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && make deploy-streamlit`
+
+## What if I don't have those pre-reqs
+Keep reading. You'll find links/explanations for how to get each of the pre-requisites
+
+# Ok, that was a little sparse. I want to understand how this all works and what I should do with my streamlit app.
+
+First off, I highly recommend that you checkout the following 
+
+## I did that, but I got some nasty error about "This stack uses assets..."
+
+Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
 
 # Streamlit in a Docker Served up on AWS Fargate
 
@@ -122,3 +142,11 @@ A slimmed down version of [nicolasmetallo](https://github.com/nicolasmetallo)'s 
 8. Navigate to the URL printed when the stack is successfully deployed
 9. Don't forget to **CLEAN UP** when you don't need the stack anymore (e.g. `cd cdk/streamlit && cdk destroy`)
 
+
+## Pre-requisites
+* Get an [AWS account](https://portal.aws.amazon.com/billing/signup?nc2=h_ct&src=default&redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start) if you don't already have access to one
+* Install the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) if you haven't already done so and make sure to configure the client to connect with your AWS account (use the command `aws configure` after installation)
+* Install the [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html) on your machine. NOTE: You'll need to install Node.js as part of the process.
+* Install the `make` command if you don't already have that available. This should probably already be available if you're running Mac OS, or Linux. On windows, you'll have to do a little more work. But come to think of it, on Windows you'll also need to have the git command as well. The last time I was using Windows, I enjoyed the [Chocalatey application](https://chocolatey.org/install) which made installing git and make as simple as running the following commands:
+  * `choco install git`
+  * `choco install make`
