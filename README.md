@@ -1,2 +1,124 @@
 # streamlit-cdk-fargate
 You're one command away from deploying your Streamlit app on AWS Fargate!
+
+# MERGE 1
+
+# Streamlit in a Docker Served up on AWS Fargate
+
+Recall [this blog](https://github.com/CognicalNYC/zibby-eng-blog/blob/master/content/2020-06-15-streamlit-in-a-docker.md) which explains how to run streamlit through a local docker. The real goal of that exercise was to enable sharing the application with others that may not have the means to run streamlit locally, so they can play around with it as well.
+
+# Deploy the Streamlit Docker on Fargate using CDK
+
+I've now taken the next step and deployed it using [AWS CDK (Cloud Development Kit)](https://docs.aws.amazon.com/cdk/index.html) on [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html).
+
+The infrastructure setup on AWS was written 100% using CDK in ***python***. In particular, I **DIDN'T NEED TO TOUCH** any of the of the following:
+* AWS GUI
+* AWS CLI
+* AWS Cloud Formation (thank god I didn't have to mess with that!)
+
+I just had to modify [20 lines of code in one file](https://github.com/CognicalNYC/macgyver/blob/master/cdk/streamlit/streamlit/streamlit_stack.py#L14) - the CDK "stack definition" file that was auto-generated when I initiated the project (`cdk init streamlit`).
+
+After getting the stack definition in place, deploying was as simple as `cdk deploy`. You can see from the resources output at the bottom, that those 20 lines delivered quite a punch. In particular, the following resources were all stood up and configured:
+* EC2:
+  * VPC
+  * Subnet
+  * RouteTable
+  * SubnetRoutTableAssociation
+  * Route
+  * NatGateway
+  * InternetGateway
+  * Cluster
+  * SecurityGroup
+  * Service
+  * ServiceGroup
+* ELB
+* IAM:
+  * Role
+  * Policy
+* ECS:
+  * TaskDefinition
+* Logs:
+  * LogGroups
+
+
+## Instructions
+0.  Install Node.js as well as CDK (see [macgyver README](https://github.com/CognicalNYC/macgyver/blob/master/README.md#deploying-streamlit-on-fargate-using-aws-cdk) for more details)
+1. `git clone git@github.com:CognicalNYC/macgyver.git`
+2. The rest is described in the [macgyver README](https://github.com/CognicalNYC/macgyver/blob/master/README.md#deploying-streamlit-on-fargate-using-aws-cdk) but you're a single command away after steps 0. and 1. (`make cdk-deploy PROJECT=streamlit`)
+3. Don't forget to clean up when you're all done with either a `make cdk-clean PROJECT=streamlit` or directly inside `cdk/streamlit` with `cdk destoy`
+
+
+## Resources that CDK Configured and Stood Up
+
+```
+Resources
+[+] AWS::EC2::VPC ZephStreamlitVPC ZephStreamlitVPC40984819
+[+] AWS::EC2::Subnet ZephStreamlitVPC/PublicSubnet1/Subnet ZephStreamlitVPCPublicSubnet1Subnet1A2AA945
+[+] AWS::EC2::RouteTable ZephStreamlitVPC/PublicSubnet1/RouteTable ZephStreamlitVPCPublicSubnet1RouteTable583840F3
+[+] AWS::EC2::SubnetRouteTableAssociation ZephStreamlitVPC/PublicSubnet1/RouteTableAssociation ZephStreamlitVPCPublicSubnet1RouteTableAssociationB4A02982
+[+] AWS::EC2::Route ZephStreamlitVPC/PublicSubnet1/DefaultRoute ZephStreamlitVPCPublicSubnet1DefaultRoute082FB422
+[+] AWS::EC2::EIP ZephStreamlitVPC/PublicSubnet1/EIP ZephStreamlitVPCPublicSubnet1EIP026E0E8A
+[+] AWS::EC2::NatGateway ZephStreamlitVPC/PublicSubnet1/NATGateway ZephStreamlitVPCPublicSubnet1NATGateway44972270
+[+] AWS::EC2::Subnet ZephStreamlitVPC/PublicSubnet2/Subnet ZephStreamlitVPCPublicSubnet2Subnet9BBD958C
+[+] AWS::EC2::RouteTable ZephStreamlitVPC/PublicSubnet2/RouteTable ZephStreamlitVPCPublicSubnet2RouteTableC9BCFF80
+[+] AWS::EC2::SubnetRouteTableAssociation ZephStreamlitVPC/PublicSubnet2/RouteTableAssociation ZephStreamlitVPCPublicSubnet2RouteTableAssociationC7002783
+[+] AWS::EC2::Route ZephStreamlitVPC/PublicSubnet2/DefaultRoute ZephStreamlitVPCPublicSubnet2DefaultRoute6BA5157F
+[+] AWS::EC2::EIP ZephStreamlitVPC/PublicSubnet2/EIP ZephStreamlitVPCPublicSubnet2EIP75476F55
+[+] AWS::EC2::NatGateway ZephStreamlitVPC/PublicSubnet2/NATGateway ZephStreamlitVPCPublicSubnet2NATGatewayA8222148
+[+] AWS::EC2::Subnet ZephStreamlitVPC/PrivateSubnet1/Subnet ZephStreamlitVPCPrivateSubnet1SubnetD20AE7C7
+[+] AWS::EC2::RouteTable ZephStreamlitVPC/PrivateSubnet1/RouteTable ZephStreamlitVPCPrivateSubnet1RouteTable8052D12D
+[+] AWS::EC2::SubnetRouteTableAssociation ZephStreamlitVPC/PrivateSubnet1/RouteTableAssociation ZephStreamlitVPCPrivateSubnet1RouteTableAssociation0FCA6A09
+[+] AWS::EC2::Route ZephStreamlitVPC/PrivateSubnet1/DefaultRoute ZephStreamlitVPCPrivateSubnet1DefaultRoute41382E72
+[+] AWS::EC2::Subnet ZephStreamlitVPC/PrivateSubnet2/Subnet ZephStreamlitVPCPrivateSubnet2SubnetBB9AB52B
+[+] AWS::EC2::RouteTable ZephStreamlitVPC/PrivateSubnet2/RouteTable ZephStreamlitVPCPrivateSubnet2RouteTableE7CB2958
+[+] AWS::EC2::SubnetRouteTableAssociation ZephStreamlitVPC/PrivateSubnet2/RouteTableAssociation ZephStreamlitVPCPrivateSubnet2RouteTableAssociation15975235
+[+] AWS::EC2::Route ZephStreamlitVPC/PrivateSubnet2/DefaultRoute ZephStreamlitVPCPrivateSubnet2DefaultRoute8643277B
+[+] AWS::EC2::InternetGateway ZephStreamlitVPC/IGW ZephStreamlitVPCIGW73E796BB
+[+] AWS::EC2::VPCGatewayAttachment ZephStreamlitVPC/VPCGW ZephStreamlitVPCVPCGW683753A9
+[+] AWS::ECS::Cluster ZephStreamlitCluster ZephStreamlitCluster66F13F7D
+[+] AWS::ElasticLoadBalancingV2::LoadBalancer ZephFargateService/LB ZephFargateServiceLB23A42DAD
+[+] AWS::EC2::SecurityGroup ZephFargateService/LB/SecurityGroup ZephFargateServiceLBSecurityGroupD2E76CD5
+[+] AWS::EC2::SecurityGroupEgress ZephFargateService/LB/SecurityGroup/to streamlitZephFargateServiceSecurityGroup0445EB7E:8501 ZephFargateServiceLBSecurityGrouptostreamlitZephFargateServiceSecurityGroup0445EB7E850136068A37
+[+] AWS::ElasticLoadBalancingV2::Listener ZephFargateService/LB/PublicListener ZephFargateServiceLBPublicListenerC7EDB90F
+[+] AWS::ElasticLoadBalancingV2::TargetGroup ZephFargateService/LB/PublicListener/ECSGroup ZephFargateServiceLBPublicListenerECSGroupAAED681A
+[+] AWS::IAM::Role ZephFargateService/TaskDef/TaskRole ZephFargateServiceTaskDefTaskRoleE745B9F4
+[+] AWS::ECS::TaskDefinition ZephFargateService/TaskDef ZephFargateServiceTaskDef28DE8CEF
+[+] AWS::Logs::LogGroup ZephFargateService/TaskDef/web/LogGroup ZephFargateServiceTaskDefwebLogGroupAD28A891
+[+] AWS::IAM::Role ZephFargateService/TaskDef/ExecutionRole ZephFargateServiceTaskDefExecutionRole0B5B4D15
+[+] AWS::IAM::Policy ZephFargateService/TaskDef/ExecutionRole/DefaultPolicy ZephFargateServiceTaskDefExecutionRoleDefaultPolicy48707106
+[+] AWS::ECS::Service ZephFargateService/Service/Service ZephFargateService8DC10953
+[+] AWS::EC2::SecurityGroup ZephFargateService/Service/SecurityGroup ZephFargateServiceSecurityGroupF8F38911
+[+] AWS::EC2::SecurityGroupIngress ZephFargateService/Service/SecurityGroup/from streamlitZephFargateServiceLBSecurityGroup61AD5FB1:8501 ZephFargateServiceSecurityGroupfromstreamlitZephFargateServiceLBSecurityGroup61AD5FB185018651D62E
+```
+
+# MERGE 2
+
+## Streamlit Example (using Spacy - Named Entity Recognizer)
+Very much inspired by [Maël Fabien](https://maelfabien.github.io/project/Streamlit/#the-application)
+
+### Build and Run
+`make streamlit-iup`
+
+You'll be able to run the app at [http://localhost:8501](http://localhost:8501)
+
+## Deploying Streamlit on Fargate using AWS CDK
+
+A slimmed down version of [nicolasmetallo](https://github.com/nicolasmetallo)'s [comprehensive tutorial](https://github.com/nicolasmetallo/legendary-streamlit-demo)
+
+### **TLDR**
+
+1. Run `make cdk-deploy PROJECT=streamlit`
+2. Navigate to the URL printed when the stack is successfully deployed
+
+### What you actually need to do from scratch:
+
+1. [Install node](https://changelog.com/posts/install-node-js-with-homebrew-on-os-x) (CDK's local engine needs it)
+2. [Install AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/work-with.html#work-with-prerequisites) (this is mainly just an `npm install -g aws-cdk`)
+3. Initialize the "Streamlit Stack" (e.g. `make cdk-init PROJECT=streamlit` which creates the directory `./cdk/streamlit`)
+4. Add CDK dependencies (e.g. `make cdk-install PROJECT=streamlit PACKS="aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns"`)
+5. Copy the streamlit docker project into the `cdk/streamlit` project (e.g. `cp -r streamlit cdk/streamlit/app`)
+6. Modify the stack definition file `cdk/streamilt/streamlit/streamlit_stack.py` - this is really the crux of the "Code as Infrastrucure" definition
+7. Deploy the stack to AWS (e.g. `cd cdk/streamlit && cdk deploy`)
+8. Navigate to the URL printed when the stack is successfully deployed
+9. Don't forget to **CLEAN UP** when you don't need the stack anymore (e.g. `cd cdk/streamlit && cdk destroy`)
+
