@@ -54,15 +54,6 @@ Run the following command:
 
 You'll be able to run the app locally on port 8501: [http://localhost:8501](http://localhost:8501)
 
-
-## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
-
-**I did that, but I got some nasty error about "This stack uses assets..."**
-
-Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
-
-
-
 ## Setup the CDK Fargate Stack
 Here you'll use a few command to recreate the cdk portion of this repo and also copy in the docker subdirectory resulting in:
 ```bash
@@ -86,6 +77,14 @@ The commands you will use are:
 `cdk init app --language python && python3 -m venv .env && source .env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt`
 3. Add the project specific CDK Python requirements. In our case these are `aws_ec2`, `aws_ecs`, and `aws_ecs_patterns`:
 `aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns
+
+
+
+## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
+
+**I did that, but I got some nasty error about "This stack uses assets..."**
+
+Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
 
 
 # Deploy the Streamlit Docker on Fargate using CDK
