@@ -29,7 +29,7 @@ Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk de
 
 
 # Ok, that was a little sparse. I want to understand how this all works and what I should do with my streamlit app.
-The basicd steps are to:
+The basic steps are to:
 
 1. Setup your Streamlit Docker image
 2. Test the Docker image
