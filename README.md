@@ -1,6 +1,10 @@
 # streamlit-cdk-fargate
 You're one command away from deploying your [Streamlit](https://www.streamlit.io/) app on [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html)!
 
+## Attribution - Standing on the Shoulders of Giants
+* Maël Fabien's [excellent post](https://maelfabien.github.io/project/Streamlit/). I ripped off his very trim Streamlit app and Dockerfile.
+* Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
+
 ## What is that one command you're teasing us with?
 Ok, so assuming the following pre-req's:
 * you have an AWS account
@@ -12,20 +16,24 @@ the single command to stand up the demo streamlit app included in this repo woul
 
 `git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
 
-## What if I don't have those pre-reqs
-Here's [an explanation](#pre-requisites)
+## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
 
-# Ok, that was a little sparse. I want to understand how this all works and what I should do with my streamlit app.
-
-First off, I highly recommend that you checkout the following 
-
-## I did that, but I got some nasty error about "This stack uses assets..."
+**I did that, but I got some nasty error about "This stack uses assets..."**
 
 Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
 
-# Streamlit in a Docker Served up on AWS Fargate
+## What if I don't have those pre-reqs?
+Here's [an explanation](#pre-requisites)
 
-Recall [this blog](https://github.com/CognicalNYC/zibby-eng-blog/blob/master/content/2020-06-15-streamlit-in-a-docker.md) which explains how to run streamlit through a local docker. The real goal of that exercise was to enable sharing the application with others that may not have the means to run streamlit locally, so they can play around with it as well.
+# Ok, that was a little sparse. I want to understand how this all works and what I should do with my streamlit app.
+The basicd steps are to:
+
+1. Setup your Streamlit Docker image
+2. Test the Docker image
+3. Setup your CDK streamlit stack, copying the Docker project into the cdk project
+4. Deploy the CDK stack
+5. Tear-down the CDK stack when you're done using it
+
 
 # Deploy the Streamlit Docker on Fargate using CDK
 
