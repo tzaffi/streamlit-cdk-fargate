@@ -70,33 +70,17 @@ Here you'll use a few command to recreate the cdk portion of this repo and also 
     |    |── requirements.txt
     |    ├── app.py
 ```
-The commands you will use are:
+The steps and commands are as follows (assuming you removed or renamed the `cdk` directory):
 
 1. Create the cdk directory and enter it: `mkdir cdk && cd cdk`
-2. Create the CDK project skeleton with appropriate virtual env, latest Pip, : 
+2. Create the CDK project skeleton with appropriate virtual env, latest Pip : 
 `cdk init app --language python && python3 -m venv .env && source .env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt`
 3. Add the project specific CDK Python requirements. In our case these are `aws_ec2`, `aws_ecs`, and `aws_ecs_patterns`:
-`aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns`
+`pip install aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns && pip freeze > requirements.txt`
+4. Copy the `streamlit-docker` file under `cdk` with `cp -r ../streamlit-docker .`
+5. **The non-trival Part**: you'll need to modify the auto-generated stack file `streamlit_stack.py` to define the needed infrastructure as code. Of all the technologies I've used so far, AWS CDK is the least painful -I only had to write about 20 lines of code. Pulumi might even be more succinct, but unfortunately, after playing around a bit I feel that currently Pulumi is not ready for the prime time. CDK is definitely less painful than the AWS CLI, AWS Cloudfront, and even Terraform. I recommend you investigate the [AWS ECS Patterns](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_ecs_patterns.html) as there are a lot of pre-canned stacks. I used the `aws_ecs_patterns.ApplicationLoadBalancedFargateService` pattern to do most of the heavy lifting.
 
-
-
-## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
-
-**I did that, but I got some nasty error about "This stack uses assets..."**
-
-Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
-
-
-# Deploy the Streamlit Docker on Fargate using CDK
-
-I've now taken the next step and deployed it using [AWS CDK (Cloud Development Kit)](https://docs.aws.amazon.com/cdk/index.html) on [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html).
-
-The infrastructure setup on AWS was written 100% using CDK in ***python***. In particular, I **DIDN'T NEED TO TOUCH** any of the of the following:
-* AWS GUI
-* AWS CLI
-* AWS Cloud Formation (thank god I didn't have to mess with that!)
-
-I just had to modify [20 lines of code in one file](https://github.com/CognicalNYC/macgyver/blob/master/cdk/streamlit/streamlit/streamlit_stack.py#L14) - the CDK "stack definition" file that was auto-generated when I initiated the project (`cdk init streamlit`).
+## Deploy the Streamlit Docker Image on Fargate using CDK
 
 After getting the stack definition in place, deploying was as simple as `cdk deploy`. You can see from the resources output at the bottom, that those 20 lines delivered quite a punch. In particular, the following resources were all stood up and configured:
 * EC2:
@@ -119,6 +103,15 @@ After getting the stack definition in place, deploying was as simple as `cdk dep
   * TaskDefinition
 * Logs:
   * LogGroups
+  
+  
+## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
+
+**I did that, but I got some nasty error about "This stack uses assets..."**
+
+Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
+
+
 
 
 ## Instructions
