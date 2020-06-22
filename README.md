@@ -5,16 +5,19 @@ You're one command away from deploying your [Streamlit](https://www.streamlit.io
 * Maël Fabien's [excellent post](https://maelfabien.github.io/project/Streamlit/). I ripped off his very trim Streamlit app and Dockerfile.
 * Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
 
-## What is that one command you're teasing us with?
-Ok, so assuming the following pre-req's:
+## TLDR: What is that one command you're teasing us with?
+
+`git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
+
+### Caveats
+
+Ok, so that was actually assuming the following pre-req's:
 * you have an AWS account
 * have configured the AWS CLI
 * installed AWS CDK on your machine
 * and have the `git` and `make` commands available
 
-the single command to stand up the demo streamlit app included in this repo would be:
 
-`git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
 
 ## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
 
