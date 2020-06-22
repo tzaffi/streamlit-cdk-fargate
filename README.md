@@ -11,8 +11,8 @@ Ok, so that was actually assuming the following pre-req's:
 * you have an AWS account
 * have configured the AWS CLI
 * installed AWS CDK on your machine
-* and have the `git` and `make` commands available
-* Optional but recommended: `docker` and `docker-compose`
+* have the `git` and `make` commands available
+* optional but recommended: `docker` and `docker-compose`
 
 ### What if I don't have those pre-reqs?
 Here's [an explanation](#pre-requisites)
