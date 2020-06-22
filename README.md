@@ -76,7 +76,7 @@ The commands you will use are:
 2. Create the CDK project skeleton with appropriate virtual env, latest Pip, : 
 `cdk init app --language python && python3 -m venv .env && source .env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt`
 3. Add the project specific CDK Python requirements. In our case these are `aws_ec2`, `aws_ecs`, and `aws_ecs_patterns`:
-`aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns
+`aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns`
 
 
 
