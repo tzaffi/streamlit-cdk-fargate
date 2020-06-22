@@ -13,6 +13,9 @@ Ok, so that was actually assuming the following pre-req's:
 * installed AWS CDK on your machine
 * and have the `git` and `make` commands available
 
+### What if I don't have those pre-reqs?
+Here's [an explanation](#pre-requisites)
+
 ## Attribution - Standing on the Shoulders of Giants
 * Maël Fabien's [excellent post](https://maelfabien.github.io/project/Streamlit/). I ripped off his very trim Streamlit app and Dockerfile.
 * Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
@@ -24,8 +27,6 @@ Ok, so that was actually assuming the following pre-req's:
 
 Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
 
-## What if I don't have those pre-reqs?
-Here's [an explanation](#pre-requisites)
 
 # Ok, that was a little sparse. I want to understand how this all works and what I should do with my streamlit app.
 The basicd steps are to:
