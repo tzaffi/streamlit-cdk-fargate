@@ -22,13 +22,6 @@ Here's [an explanation](#pre-requisites)
 * Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo/legendary-streamlit-demo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
 
 
-## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
-
-**I did that, but I got some nasty error about "This stack uses assets..."**
-
-Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
-
-
 # Ok, that was a little sparse. I want to understand how this all works and what I should do with my streamlit app.
 The basic steps are to:
 
@@ -40,15 +33,18 @@ The basic steps are to:
 
 ## Setup your Streamlit Docker Image
 This is the following sub-directory in the repo:
-
 ```bash
 .
 ├── streamlit-docker
     ├── Dockerfile
-    ├── docker-compose
+    ├── docker-compose.yml
     |── requirements.txt
     ├── app.py
 ```
+
+### UPSHOT: Tuck your streamlit `app.py` and `requirements.txt` right next to `Dockerfile` and `docker-compose.yml`
+
+You won't need to modify `Dockerfile` or `docker-compose.yml` unless you want do change the configuration, such as running the app on a port different from 8501 (the typical local streamlit port).
 
 ## Test the Docker Image Locally
 
@@ -57,6 +53,14 @@ Run the following command:
 `cd streamlit-docker && docker-compose up --build streamlit`
 
 You'll be able to run the app locally on port 8501: [http://localhost:8501](http://localhost:8501)
+
+
+## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
+
+**I did that, but I got some nasty error about "This stack uses assets..."**
+
+Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk deploy` again.
+
 
 
 ## Setup the CDK Fargate Stack
