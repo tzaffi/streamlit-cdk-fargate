@@ -18,7 +18,7 @@ Here's [an explanation](#pre-requisites)
 
 ## Attribution - Standing on the Shoulders of Giants
 * Maël Fabien's [excellent post](https://maelfabien.github.io/project/Streamlit/). I ripped off his very trim Streamlit app and Dockerfile.
-* Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
+* Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo/legendary-streamlit-demo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
 
 
 ## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
