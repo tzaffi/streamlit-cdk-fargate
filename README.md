@@ -1,10 +1,6 @@
 # streamlit-cdk-fargate
 You're one command away from deploying your [Streamlit](https://www.streamlit.io/) app on [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html)!
 
-## Attribution - Standing on the Shoulders of Giants
-* Maël Fabien's [excellent post](https://maelfabien.github.io/project/Streamlit/). I ripped off his very trim Streamlit app and Dockerfile.
-* Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
-
 ## TLDR: What is that one command you're teasing us with?
 
 `git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
@@ -17,6 +13,9 @@ Ok, so that was actually assuming the following pre-req's:
 * installed AWS CDK on your machine
 * and have the `git` and `make` commands available
 
+## Attribution - Standing on the Shoulders of Giants
+* Maël Fabien's [excellent post](https://maelfabien.github.io/project/Streamlit/). I ripped off his very trim Streamlit app and Dockerfile.
+* Nicolas Metalo's [very comprehensive tutorial](https://github.com/nicolasmetallo). I ripped off most of the rest of this code from there, except that I tried to streamline the CDK stack definition a bit, and summarized the various commands using `make`.
 
 
 ## ANTIQUATED - keeping as reminder to add `cdk bootstrap` to make command. - DON'T FORGET TO REMOVE
@@ -34,7 +33,7 @@ The basicd steps are to:
 1. Setup your Streamlit Docker image
 2. Test the Docker image
 3. Setup your CDK streamlit stack, copying the Docker project into the cdk project
-4. Deploy the CDK stack
+4. [Deploy](#deploy-the-streamlit-docker-on-fargate-using-cdk) the CDK stack
 5. Tear-down the CDK stack when you're done using it
 
 
