@@ -31,11 +31,19 @@ Try `cdk bootstrap` from inside of the `streamlit/` directory. Thent try `cdk de
 # Ok, that was a little sparse. I want to understand how this all works and what I should do with my streamlit app.
 The basic steps are to:
 
-1. Setup your Streamlit Docker image
-2. Test the Docker image
+1. [Setup](#setup-your-streamlit-docker-image) your Streamlit Docker image
+2. [Test](#test-the-docker-image-locally) the Docker image locally
 3. Setup your CDK streamlit stack, copying the Docker project into the cdk project
 4. [Deploy](#deploy-the-streamlit-docker-on-fargate-using-cdk) the CDK stack
 5. Tear-down the CDK stack when you're done using it
+
+## Setup your Streamlit Docker Image
+Very much inspired by [Maël Fabien](https://maelfabien.github.io/project/Streamlit/#the-application)
+
+### Test the Docker Image Locally
+`make streamlit-iup`
+
+You'll be able to run the app at [http://localhost:8501](http://localhost:8501)
 
 
 # Deploy the Streamlit Docker on Fargate using CDK
@@ -123,14 +131,6 @@ Resources
 ```
 
 # MERGE 2
-
-## Streamlit Example (using Spacy - Named Entity Recognizer)
-Very much inspired by [Maël Fabien](https://maelfabien.github.io/project/Streamlit/#the-application)
-
-### Build and Run
-`make streamlit-iup`
-
-You'll be able to run the app at [http://localhost:8501](http://localhost:8501)
 
 ## Deploying Streamlit on Fargate using AWS CDK
 
