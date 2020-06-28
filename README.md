@@ -109,6 +109,10 @@ Stack ARN:
 
 Simply copy/past that URL into your browser and you 
 
+## Tear it Down!
+Don't forget that [all the resources]((#resources-that-cdk-configured-and-stood-up) that CDK stood up for you are costing you money and wasting energy when not used. Thankfully, tearing down the entire stack is as simple as:
+
+> `cdk destroy`
 
 ## The Amazing Power of CDK
 
