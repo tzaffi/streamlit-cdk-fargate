@@ -112,7 +112,7 @@ Simply copy/past that URL into your browser and you
 
 ## The Amazing Power of CDK
 
-You can see from the resources [output at the bottom](#resources-that-cdk-configured-and-stood-up), that those 20 lines delivered quite a punch. In particular, the following resources were all stood up and configured:
+You can see from the [resources output](#resources-that-cdk-configured-and-stood-up), that those 20 lines delivered quite a punch. In particular, the following resources were all stood up and configured:
 * EC2:
   * VPC
   * Subnet
