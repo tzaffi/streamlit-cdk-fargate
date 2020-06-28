@@ -15,6 +15,9 @@ local-streamlit:
 	cd streamlit-docker && docker-compose up --build streamlit
 
 
+deploy-streamlit:
+	cd cdk && cdk deploy
+
 ############# CDK: AWS Cloud Developer Kit ###########
 
 PROJECT = "invalid"

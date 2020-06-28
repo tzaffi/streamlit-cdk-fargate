@@ -6,7 +6,7 @@ from aws_cdk import (
 )
 
 
-class StreamlitStack(core.Stack):
+class CdkStack(core.Stack):
 
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
@@ -19,7 +19,7 @@ class StreamlitStack(core.Stack):
         cluster = ecs.Cluster(self, "ZephStreamlitCluster", vpc=vpc)
 
         # Build Dockerfile from local folder and push to ECR
-        image = ecs.ContainerImage.from_asset('app')
+        image = ecs.ContainerImage.from_asset('streamlit-docker')
 
         # Use an ecs_patterns recipe to do all the rest!
         ecs_patterns.ApplicationLoadBalancedFargateService(self, "ZephFargateService",
