@@ -1,13 +1,14 @@
 # streamlit-cdk-fargate
+
 You're one command away from deploying your [Streamlit](https://www.streamlit.io/) app on [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html)!
 
-## TLDR: What is that one command you're teasing us with?
+# TLDR: What is that one command you're teasing us with?
 
 `git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
 
 **DON'T FORGET TO [TEAR DOWN](#tear-it-down) YOUR DEPLOY AFTER USAGE !!!!**
 
-### Caveats
+## Caveats
 
 Ok, so that was actually assuming the following pre-req's:
 * you have an AWS account
@@ -16,7 +17,7 @@ Ok, so that was actually assuming the following pre-req's:
 * have the `git` and `make` commands available
 * optional but recommended: `docker` and `docker-compose`
 
-### What if I don't have those pre-reqs?
+## What if I don't have those pre-reqs?
 Here's [an explanation](#pre-requisites)
 
 ## Attribution - Standing on the Shoulders of Giants
