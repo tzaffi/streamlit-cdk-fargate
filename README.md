@@ -28,7 +28,7 @@ The basic steps are to:
 1. [Setup](#setup-your-streamlit-docker-image) your Streamlit Docker image
 2. [Test](#test-the-docker-image-locally) the Docker image locally
 3. [Setup](#setup-the-cdk-fargate-stack) your CDK streamlit Fargate stack, copying the Docker project into the cdk project
-4. [Deploy](#deploy-the-streamlit-docker-on-fargate-using-cdk) the CDK stack
+4. [Deploy](#deploy-the-streamlit-docker-image-on-fargate-using-cdk) the CDK stack
 5. Tear-down the CDK stack when you're done using it
 
 ## Setup your Streamlit Docker Image
