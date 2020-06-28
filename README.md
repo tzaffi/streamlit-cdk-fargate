@@ -63,12 +63,14 @@ Here you'll use a few command to recreate the cdk portion of this repo and also 
 
 The steps and commands are as follows (_ASSUMING_ you have removed or renamed the `cdk` directory):
 
-1. Create the cdk directory and enter it: `mkdir cdk && cd cdk`
-2. Create the CDK project skeleton with appropriate virtual env, latest Pip : 
+1. Create the cdk directory and enter it: 
+`mkdir cdk && cd cdk`
+2. Create the CDK project skeleton with appropriate virtual env, latest Pip :
 `cdk init app --language python && python3 -m venv .env && source .env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt`
 3. Add the project specific CDK Python requirements. In our case these are `aws_ec2`, `aws_ecs`, and `aws_ecs_patterns`:
 `pip install aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns && pip freeze > requirements.txt`
-4. Copy the `streamlit-docker` file under `cdk` with `cp -r ../streamlit-docker .`
+4. Copy the `streamlit-docker` file under `cdk` with 
+`cp -r ../streamlit-docker .`
 5. **The non-trival Part**: you'll need to modify the auto-generated stack file `streamlit_stack.py` to define the needed infrastructure as code. Of all the technologies I've used so far, AWS CDK is the least painful -I only had to write about 20 lines of code. Pulumi might even be more succinct, but unfortunately, after playing around a bit I feel that currently Pulumi is not ready for the prime time. CDK is definitely less painful than the AWS CLI, AWS Cloudfront, and even Terraform. I recommend you investigate the [AWS ECS Patterns](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_ecs_patterns.html) as there are a lot of pre-canned stacks. I used the `aws_ecs_patterns.ApplicationLoadBalancedFargateService` pattern to do most of the heavy lifting.
 
 
