@@ -5,7 +5,7 @@ You're one command away from deploying your [Streamlit](https://www.streamlit.io
 
 `git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
 
-**DON'T FORGET TO [TEAR DOWN](#tear-it-down) YOUR DEPLOY AFTER USAGE !!!!***
+**DON'T FORGET TO [TEAR DOWN](#tear-it-down) YOUR DEPLOY AFTER USAGE !!!!**
 
 ### Caveats
 
