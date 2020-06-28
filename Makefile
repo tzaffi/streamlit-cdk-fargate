@@ -24,7 +24,8 @@ deploy-streamlit:
 	&& source .env/bin/activate \
 	&& pip install --upgrade pip \
 	&& pip install -r requirements.txt
-	&& pip install aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns && pip freeze > requirements.txt \
+	&& pip install aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns \
+	&& pip freeze > requirements.txt \
 	&& cp -r ../streamlit-docker . \
 	&& cp ../cdk_stack.py cdk/cdk/. \
 	&& cdk bootstrap \
