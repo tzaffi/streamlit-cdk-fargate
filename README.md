@@ -71,7 +71,7 @@ The steps and commands are as follows (_ASSUMING_ you have removed or renamed th
 > `pip install aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns && pip freeze > requirements.txt`
 4. Copy the `streamlit-docker` file under `cdk` with 
 > `cp -r ../streamlit-docker .`
-5. **The non-trival Part**: you'll need to modify the auto-generated stack file `./cdk/cdk/cdk_stack.py` to define the needed infrastructure as code. Of all the technologies I've used so far, AWS CDK is the least painful -I only had to write about 20 lines of code. I recommend you investigate the [AWS ECS Patterns](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_ecs_patterns.html) as there are a lot of pre-canned stacks. I used the `aws_ecs_patterns.ApplicationLoadBalancedFargateService` pattern to do most of the heavy lifting.
+5. **The non-trival Part**: you'll need to modify the auto-generated stack file `./cdk/cdk/cdk_stack.py` to define the needed infrastructure as code. Of all the technologies I've used so far, AWS CDK is the least painful -I only had to [add 3 imports](https://github.com/tzaffi/streamlit-cdk-fargate/blob/master/cdk/cdk/cdk_stack.py#L2) and write about [20 lines of code](https://github.com/tzaffi/streamlit-cdk-fargate/blob/master/cdk/cdk/cdk_stack.py#L14). I recommend you investigate the [AWS ECS Patterns](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_ecs_patterns.html) as there are a lot of pre-canned stacks. I used the `aws_ecs_patterns.ApplicationLoadBalancedFargateService` pattern to do most of the heavy lifting.
 
 
 ```bash
