@@ -11,7 +11,9 @@ The Streamlit App's URL will be printed at the very end of the process.
 **DON'T FORGET TO [TEAR DOWN](#tear-it-down) YOUR DEPLOY AFTER USAGE !!!!**
 
 ## How long does that take?
-It should take less than a minute to setup the project, and another 10 minutes or so to stand up the stack on AWS.
+Around 10-15 minutes. In particular:
+1. Less than a minute to setup the project locally
+2. 10 minutes or so to stand up the stack on AWS
 
 ## Caveats
 
