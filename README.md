@@ -71,7 +71,7 @@ The steps and commands are as follows (_ASSUMING_ you have removed or renamed th
 > `pip install aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns && pip freeze > requirements.txt`
 4. Copy the `streamlit-docker` file under `cdk` with 
 > `cp -r ../streamlit-docker .`
-5. **The non-trival Part**: you'll need to modify the auto-generated stack file `streamlit_stack.py` to define the needed infrastructure as code. Of all the technologies I've used so far, AWS CDK is the least painful -I only had to write about 20 lines of code. Pulumi might even be more succinct, but unfortunately, after playing around a bit I feel that currently Pulumi is not ready for the prime time. CDK is definitely less painful than the AWS CLI, AWS Cloudfront, and even Terraform. I recommend you investigate the [AWS ECS Patterns](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_ecs_patterns.html) as there are a lot of pre-canned stacks. I used the `aws_ecs_patterns.ApplicationLoadBalancedFargateService` pattern to do most of the heavy lifting.
+5. **The non-trival Part**: you'll need to modify the auto-generated stack file `streamlit_stack.py` to define the needed infrastructure as code. Of all the technologies I've used so far, AWS CDK is the least painful -I only had to write about 20 lines of code. I recommend you investigate the [AWS ECS Patterns](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_ecs_patterns.html) as there are a lot of pre-canned stacks. I used the `aws_ecs_patterns.ApplicationLoadBalancedFargateService` pattern to do most of the heavy lifting.
 
 
 ```bash
@@ -206,3 +206,6 @@ A slimmed down version of [nicolasmetallo](https://github.com/nicolasmetallo)'s 
   * `choco install make`
 * Optional but highly recommended: For testing locally, you'll also need to install [docker-compose and docker](https://docs.docker.com/compose/install/)
 * I'm also assuming that you have Python 3 and Pip installed. Otherwise, why would you have even been interested in this repo?
+
+## Some Brief After Thoughts Comparing CDK with Other Infrastructure as Code Solutions
+I was impressed by CDK's expressive power and choice of languages. It did create a lot of boilerplate. But once you knew _which_ boilerplate to modify, it was relatively painless. Playing around with [Pulumi](https://www.pulumi.com/), I would say it is more aesthetically pleasing (i.e. less boilerplate) than CDK, might even be more succinct, is available in several programming languages as well, and has the distint advantage of working with all major cloud providers. Unfortunately, I feel that currently Pulumi is not ready for the prime time (i.e., I couln't get it to stand up the stack without any hitches). CDK is definitely less painful than the AWS CLI, AWS Cloudfront, and even Terraform. 
