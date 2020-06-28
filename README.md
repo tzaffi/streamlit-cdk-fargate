@@ -126,6 +126,40 @@ Don't forget that [all the resources]((#resources-that-cdk-configured-and-stood-
 
 > `cdk destroy`
 
+## Explanation of CDK Stack Definistion `cdk_stack.py`
+
+#### Set up a VPC (Virtual Private Cloud) where all the resources will live securely and add an EC2 Cluster to it
+```python
+vpc = ec2.Vpc(
+    self, "ZephStreamlitVPC", 
+    max_azs = 2, # default is all AZs in region, 
+    )
+
+cluster = ecs.Cluster(self, "ZephStreamlitCluster", vpc=vpc)
+```
+
+#### Build Dockerfile from local folder and push to ECR
+```python
+        image = ecs.ContainerImage.from_asset('streamlit-docker')
+```
+
+#### Use an ecs_patterns recipe to do all the rest!
+
+You need configure the ALB (Application Load Balancer) to redirect traffic into the Streamlit Docker's port 8501:
+
+```python
+        ecs_patterns.ApplicationLoadBalancedFargateService(self, "ZephFargateService",
+            cluster=cluster,            # Required
+            cpu=256,                    # Default is 256
+            desired_count=1,            # Default is 1
+            task_image_options=ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
+                image=image, container_port=8501),  # Docker exposes 8501 for streamlit
+            memory_limit_mib=512,       # Default is 512
+            public_load_balancer=True,  # Default is False
+        )  
+```
+
+
 ## The Amazing Power of CDK
 
 You can see from the [resources output](#resources-that-cdk-configured-and-stood-up), that those 20 lines delivered quite a punch. In particular, the following resources were all stood up and configured:
