@@ -90,8 +90,14 @@ The steps and commands are as follows (_ASSUMING_ you have removed or renamed th
 ```
 
 ## Deploy the Streamlit Docker Image on Fargate using CDK
+With the driectory structure and stack definition in place run the command
+>`cdk deploy`. 
+This will take around 10 minutes to complete. At the end of the process you will see a URL printed out where the app has been deployed. It will look something like:
+```
+```
 
-After getting the stack definition in place, deploying was as simple as `cdk deploy`. You can see from the resources output at the bottom, that those 20 lines delivered quite a punch. In particular, the following resources were all stood up and configured:
+
+You can see from the resources output at the bottom, that those 20 lines delivered quite a punch. In particular, the following resources were all stood up and configured:
 * EC2:
   * VPC
   * Subnet
