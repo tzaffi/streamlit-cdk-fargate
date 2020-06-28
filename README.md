@@ -5,6 +5,8 @@ You're one command away from deploying your [Streamlit](https://www.streamlit.io
 
 `git clone https://github.com/tzaffi/streamlit-cdk-fargate.git && cd streamlit-cdk-fargate && make deploy-streamlit`
 
+**DON'T FORGET TO [TEAR DOWN](#tear-it-down) YOUR DEPLOY AFTER USAGE !!!!***
+
 ### Caveats
 
 Ok, so that was actually assuming the following pre-req's:
@@ -29,7 +31,7 @@ The basic steps are to:
 2. [Test](#test-the-docker-image-locally) the Docker image locally
 3. [Setup](#setup-the-cdk-fargate-stack) your CDK streamlit Fargate stack, copying the Docker project into the cdk project
 4. [Deploy](#deploy-the-streamlit-docker-image-on-fargate-using-cdk) the CDK stack
-5. Tear-down the CDK stack when you're done using it
+5. [Tear-down](#tear-it-down) the CDK stack when you're done using it
 
 ## Setup your Streamlit Docker Image
 This is the following sub-directory in the repo:
@@ -181,29 +183,6 @@ Resources
 [+] AWS::EC2::SecurityGroupIngress ZephFargateService/Service/SecurityGroup/from streamlitZephFargateServiceLBSecurityGroup61AD5FB1:8501 ZephFargateServiceSecurityGroupfromstreamlitZephFargateServiceLBSecurityGroup61AD5FB185018651D62E
 ```
 
-# MERGE 2
-
-## Deploying Streamlit on Fargate using AWS CDK
-
-A slimmed down version of [nicolasmetallo](https://github.com/nicolasmetallo)'s [comprehensive tutorial](https://github.com/nicolasmetallo/legendary-streamlit-demo)
-
-### **TLDR**
-
-1. Run `make cdk-deploy PROJECT=streamlit`
-2. Navigate to the URL printed when the stack is successfully deployed
-
-### What you actually need to do from scratch:
-
-1. [Install node](https://changelog.com/posts/install-node-js-with-homebrew-on-os-x) (CDK's local engine needs it)
-2. [Install AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/work-with.html#work-with-prerequisites) (this is mainly just an `npm install -g aws-cdk`)
-3. Initialize the "Streamlit Stack" (e.g. `make cdk-init PROJECT=streamlit` which creates the directory `./cdk/streamlit`)
-4. Add CDK dependencies (e.g. `make cdk-install PROJECT=streamlit PACKS="aws_cdk.aws_ec2 aws_cdk.aws_ecs aws_cdk.aws_ecs_patterns"`)
-5. Copy the streamlit docker project into the `cdk/streamlit` project (e.g. `cp -r streamlit cdk/streamlit/app`)
-6. Modify the stack definition file `cdk/streamilt/streamlit/streamlit_stack.py` - this is really the crux of the "Code as Infrastrucure" definition
-7. Deploy the stack to AWS (e.g. `cd cdk/streamlit && cdk deploy`)
-8. Navigate to the URL printed when the stack is successfully deployed
-9. Don't forget to **CLEAN UP** when you don't need the stack anymore (e.g. `cd cdk/streamlit && cdk destroy`)
-
 
 ## Pre-requisites
 * Get an [AWS account](https://portal.aws.amazon.com/billing/signup?nc2=h_ct&src=default&redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start) if you don't already have access to one
@@ -214,6 +193,7 @@ A slimmed down version of [nicolasmetallo](https://github.com/nicolasmetallo)'s 
   * `choco install make`
 * Optional but highly recommended: For testing locally, you'll also need to install [docker-compose and docker](https://docs.docker.com/compose/install/)
 * I'm also assuming that you have Python 3 and Pip installed. Otherwise, why would you have even been interested in this repo?
+
 
 ## Some Brief After Thoughts Comparing CDK with Other Infrastructure as Code Solutions
 I was impressed by CDK's expressive power and choice of languages. It did create a lot of boilerplate. But once you knew _which_ boilerplate to modify, it was relatively painless. Playing around with [Pulumi](https://www.pulumi.com/), I would say it is more aesthetically pleasing (i.e. less boilerplate) than CDK, might even be more succinct, is available in several programming languages as well, and has the distint advantage of working with all major cloud providers. Unfortunately, I feel that currently Pulumi is not ready for the prime time (i.e., I couln't get it to stand up the stack without any hitches). CDK is definitely less painful than the AWS CLI, AWS Cloudfront, and even Terraform. 
