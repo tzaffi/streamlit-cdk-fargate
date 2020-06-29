@@ -126,7 +126,7 @@ Don't forget that [all the resources](#resources-that-cdk-configured-and-stood-u
 
 > `cdk destroy`
 
-## Explanation of CDK Stack Definistion `cdk_stack.py`
+## Explanation of the CDK Stack Definition `cdk_stack.py`
 
 #### Set up a VPC (Virtual Private Cloud) where all the resources will live securely and add an EC2 Cluster to it
 ```python
