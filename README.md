@@ -69,7 +69,7 @@ You'll be able to run the app locally on port 8501: [http://localhost:8501](http
 To terminate the app simply exit the docker interactive shell as usual: on Linux / Mac this is done using the `CTRL-C` key stroke.
 
 ## Setup the CDK Fargate Stack
-Here you'll use a few command to recreate the cdk portion of this repo and also copy in the docker subdirectory. You resulting subdirectory structure will look like:
+Here you'll use a few command to recreate the cdk portion of this repo and also copy in the docker subdirectory. Your resulting subdirectory structure will look like:
 
 The steps and commands are as follows (_ASSUMING_ you have removed or renamed the `cdk` directory):
 
