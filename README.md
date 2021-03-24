@@ -48,7 +48,7 @@ This is the following sub-directory in the repo:
 ├── streamlit-docker
     ├── Dockerfile
     ├── docker-compose.yml
-    |── requirements.txt
+    ├── requirements.txt
     ├── app.py
 ```
 
@@ -95,7 +95,7 @@ The steps and commands are as follows (_ASSUMING_ you have removed or renamed th
     ├── streamlit-docker
     |    ├── Dockerfile
     |    ├── docker-compose.yml
-    |    |── requirements.txt
+    |    ├── requirements.txt
     |    ├── app.py
 ```
 
